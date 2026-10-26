@@ -4,7 +4,7 @@ from datetime import datetime
 
 import streamlit as st
 from dotenv import load_dotenv
-from openai import OpenAI
+from google import genai
 
 # --------------------------------------------------
 # Configuration
