@@ -18,9 +18,9 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+MODEL = "gemini-2.5-flash"
+API_KEY = os.getenv("GEMINI_API_KEY")
 
-MODEL = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
-API_KEY = os.getenv("OPENAI_API_KEY")
 
 INSTRUCTIONS = """
 You are My AI, a helpful and friendly AI assistant.
@@ -252,13 +252,13 @@ if prompt:
     with st.chat_message("assistant", avatar="✳️"):
         if not API_KEY:
             answer = (
-                "Please configure OPENAI_API_KEY in your .env file, "
+                "Please configure genai_API_KEY in your .env file, "
                 "then restart the app."
             )
             st.error(answer)
         else:
             try:
-                client = OpenAI(api_key=API_KEY)
+                client = genai.Client(api_key=API_KEY)
 
                 with st.spinner("Thinking..."):
                     response = client.responses.create(
